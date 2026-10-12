@@ -26,6 +26,12 @@ A simple weather dashboard that shows the current weather for any city using the
 - `script.js` - fetching and displaying the weather
 - `config.example.js` - template for the API key
 
-## Screenshot
+## Screenshots
 
-![Screenshot](image.png)
+Empty page (before searching):
+
+![Empty page](screenshots/empty.png)
+
+Page with weather data:
+
+![Weather for a city](screenshots/weather.png)
