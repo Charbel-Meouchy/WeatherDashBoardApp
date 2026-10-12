@@ -1,0 +1,184 @@
+/* new thing this time from session 06: i put all my colors in variables inside :root and then use them with var()
+so if i want to change a color i only change it here once */
+:root {
+  --bg: #f4efe6;        /* page background (a warm cream) */
+  --card: #ffffff;      /* the card */
+  --text: #2b2b2b;      /* normal text */
+  --muted: #7a7a7a;     /* lighter text for labels */
+  --brand: #e07a3f;     /* orange for the button and the spinner */
+  --brand-dark: #c4612a;
+  --danger: #c0392b;    /* errors */
+  --line: #ece6dc;      /* borders */
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box; /* so padding and border are counted inside the width */
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 480px;
+  margin: 48px auto;    /* auto centers it */
+  padding: 24px;
+  background-color: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* soft shadow so the card looks like its above the page */
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+form {
+  display: flex;        /* input and button next to each other */
+  gap: 8px;
+}
+
+input {
+  flex: 1;              /* the input takes all the space left */
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  transition: border-color 200ms ease-out; /* transition from session 06 (property duration easing) so the color changes smoothly */
+}
+
+input:focus {
+  border-color: var(--brand);
+  outline: none;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--brand);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 200ms ease-out;
+}
+
+button:hover {
+  background-color: var(--brand-dark);
+}
+
+#loading {
+  display: flex;
+  align-items: center;  /* spinner and text on the same line in the middle */
+  gap: 8px;
+  color: var(--muted);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--line);
+  border-top-color: var(--brand); /* only the top is orange so when it turns it looks like its spinning */
+  border-radius: 50%;             /* makes the square a circle */
+  animation: spin 800ms linear infinite; /* infinite is ok here since the slides said looping animation is fine for loaders */
+}
+
+@keyframes spin {                 /* keyframes from session 06, it runs by itself without a trigger */
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#error {
+  padding: 10px 12px;
+  color: var(--danger);
+  background-color: #fdecea;      /* light red box so the error is easy to notice */
+  border-radius: 10px;
+}
+
+#result {
+  margin-top: 20px;
+}
+
+.result-top {
+  display: flex;
+  justify-content: space-between; /* city name on the left and icon on the right */
+  align-items: center;
+}
+
+h2 {
+  margin: 0;
+}
+
+#description {
+  margin: 2px 0 0;
+  color: var(--muted);
+  text-transform: capitalize;     /* makes the first letter of each word capital without js */
+}
+
+#icon {
+  width: 80px;
+  height: 80px;
+}
+
+#temp {
+  margin: 4px 0 16px;
+  font-size: 56px;                /* the temperature is the most important so its the biggest */
+  font-weight: bold;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal boxes in one row */
+  gap: 8px;
+}
+
+.detail {
+  padding: 12px;
+  background-color: var(--bg);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.label {
+  display: block;                 /* span is inline by default so block puts the label and the value on 2 lines */
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;       /* the class js adds and removes to show and hide things, !important so it wins over the display:flex of #loading */
+}
+
+@media (max-width: 600px) {       /* for phones */
+  .container {
+    margin: 16px;
+  }
+
+  form {
+    flex-direction: column;       /* input on top and button under it */
+  }
+
+  .details {
+    grid-template-columns: 1fr;   /* the 3 boxes go under each other */
+  }
+}

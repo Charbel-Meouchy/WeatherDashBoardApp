@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- like before its for the phone to use its real width (needed for the responsive part) -->
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css"> <!-- just linking the stylesheet -->
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <h1>Weather Dashboard</h1>                  <!-- first head like usual -->
+      <p class="subtitle">Type a city to see its live weather</p>
+    </header>
+
+    <form id="search-form">                       <!-- a form just like assignment 3 but instead of a task the user types a city name
+        and the user can search with the button or with Enter (both work since i listen to submit in js) -->
+      <input type="text" id="city-input" placeholder="ex: Beirut" autocomplete="off"> <!-- placeholder is the light example text before typing and
+      autocomplete off so the browser doesnt show its old suggestions on top of my box -->
+      <button type="submit">Search</button>
+    </form>
+
+    <p id="loading" class="hidden"><span class="spinner"></span>Loading...</p> <!-- the loading indicator the assignment asked for, the empty span
+    is the little spinning circle i made in css and the class hidden hides it until js removes the class while waiting for the api -->
+    <p id="error" class="hidden"></p>             <!-- empty since js puts the error message in it -->
+
+    <div id="result" class="hidden">              <!-- the weather card, hidden until there is data, all the tags inside are empty since js fills them
+        from the api data so nothing is hardcoded -->
+      <div class="result-top">
+        <div>
+          <h2 id="city-name"></h2>
+          <p id="description"></p>
+        </div>
+        <img id="icon" src="" alt="">             <!-- the weather icon, js gives it the image link -->
+      </div>
+      <p id="temp"></p>
+      <div class="details">                       <!-- the extra data points (the assignment asked for at least 2 and i have 3) -->
+        <div class="detail">
+          <span class="label">Feels like</span>
+          <span id="feels-like" class="value"></span> <!-- span so js can only change the number and the label stays the same -->
+        </div>
+        <div class="detail">
+          <span class="label">Humidity</span>
+          <span id="humidity" class="value"></span>
+        </div>
+        <div class="detail">
+          <span class="label">Wind</span>
+          <span id="wind" class="value"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="config.js"></script>  <!-- this one has my api key and its in .gitignore so it never goes to github, it has to load before script.js
+  so the key exists when script.js needs it -->
+  <script src="script.js"></script>  <!-- i put this in the end so html exists before js runs -->
+</body>
+</html>
